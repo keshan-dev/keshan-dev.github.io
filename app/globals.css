@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-frame: #e4e6ea;
+  --color-paper: #f7f8fa;
+  --color-ink: #0d1321;
+  --color-cobalt: #123c8c;
+  --color-abyss: #091a40;
+  --color-signal: #ff5a1f;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-michroma), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+/* Tailwind preflight already resets margin, padding and box-sizing. Any
+   unlayered rule here would override the layered utilities. */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  /* The fixed CellField paints the page; this colour covers overscroll. */
+  background: var(--color-abyss);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-signal);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 3px;
+}
+
+/* Page-load rise. Applied to the element that also carries any blend mode,
+   so the opacity change never isolates a blended child. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Surname letters: white with a soft bottom fade, plus a warm highlight band
+   that sweeps across once after the letters land (delay set per letter). */
+.name-letter {
+  background-image:
+    linear-gradient(110deg, transparent 38%, rgba(255, 176, 140, 0.95) 50%, transparent 62%),
+    linear-gradient(to bottom, #fff 55%, rgba(255, 255, 255, 0.55));
+  background-size: 300% 100%, 100% 100%;
+  background-position: 150% 0, 0 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 1.4s ease-in-out 1 both;
+}
+
+@keyframes shine {
+  from {
+    background-position: 150% 0, 0 0;
+  }
+  to {
+    background-position: -50% 0, 0 0;
+  }
+}
+
+/* Scrolling bands: the track holds two identical copies, so shifting it by half
+   its width loops without a seam. */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* Work card row: slower, and it holds still while being looked at. */
+.marquee-work {
+  animation-duration: 70s;
+}
+
+.marquee-work:hover,
+.marquee-work:focus-within,
+.marquee-paused {
+  animation-play-state: paused;
+}
+
+/* Terminal cursor. */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.blink {
+  animation: blink 1s steps(1) infinite;
+}
+
+/* Slow bob for the hero stack tiles. Uses translate so it composes with
+   any transform utility already on the element. */
+@keyframes float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -7px;
+  }
+}
+
+.float {
+  animation: float 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise,
+  .float,
+  .blink,
+  .marquee,
+  .name-letter {
+    animation: none;
+  }
+}

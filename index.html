@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shamika Keshan | Software Engineer</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- GSAP & ScrollTrigger for Devfolio-style animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        navy: '#0B1120',
+                        slate: {
+                            850: '#151e32',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base Styles */
+        body {
+            background-color: #0B1120;
+            color: #cbd5e1;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(30, 41, 59, 0.5);
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Navbar Blur */
+        .nav-blur {
+            background: rgba(11, 17, 32, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+        }
+
+        ::selection {
+            background: rgba(59, 130, 246, 0.3);
+            color: #fff;
+        }
+
+        /* Prevent flicker before GSAP loads */
+        .gsap-reveal,
+        .hero-elem {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-blue-500/30">
+
+    <!-- Background Watermark Text -->
+    <div
+        class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[18vw] font-bold text-slate-800/20 z-[-1] pointer-events-none tracking-tighter whitespace-nowrap select-none">
+        KESHAN
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 nav-blur hero-elem" id="navbar">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#"
+                class="text-2xl font-bold text-white tracking-tighter hover:text-blue-400 transition-colors">SK.</a>
+            <div class="hidden md:flex gap-8 text-sm font-mono text-slate-300">
+                <a href="#about" class="hover:text-blue-400 transition-colors">01. About</a>
+                <a href="#skills" class="hover:text-blue-400 transition-colors">02. Skills</a>
+                <a href="#projects" class="hover:text-blue-400 transition-colors">03. Projects</a>
+            </div>
+            <div class="flex gap-5">
+                <a href="https://github.com/keshan-dev" target="_blank"
+                    class="text-slate-400 hover:text-blue-400 transition-colors text-xl"><i
+                        class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/shamika-keshan" target="_blank"
+                    class="text-slate-400 hover:text-blue-400 transition-colors text-xl"><i
+                        class="fa-brands fa-linkedin"></i></a>
+                <a href="mailto:justkeshan@gmail.com"
+                    class="text-slate-400 hover:text-blue-400 transition-colors text-xl"><i
+                        class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 pt-24 pb-20">
+
+        <!-- Hero Section -->
+        <section id="about" class="min-h-[80vh] flex flex-col justify-center">
+            <p class="hero-elem text-blue-400 font-mono mb-5 text-sm md:text-base">Hi, my name is</p>
+            <h1 class="hero-elem text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight">Shamika Keshan.</h1>
+            <h2 class="hero-elem text-4xl md:text-6xl font-bold text-slate-500 mb-8 tracking-tight">I build systems that
+                ship.</h2>
+            <p class="hero-elem max-w-2xl text-lg text-slate-400 leading-relaxed mb-12">
+                Software Engineering undergraduate at <span class="text-slate-200 font-medium">NSBM Green
+                    University</span>.
+                I specialize in Full Stack Development, AI/ML integrations, and Cloud/DevOps architecture.
+                Currently building <span class="text-blue-400">TalentIQ</span> and modernizing <span
+                    class="text-teal-400">Silverline</span>.
+            </p>
+            <div class="hero-elem flex gap-4">
+                <a href="#projects"
+                    class="px-8 py-4 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium transition-colors shadow-lg shadow-blue-900/20">
+                    View My Work
+                </a>
+                <a href="mailto:justkeshan@gmail.com"
+                    class="relative group px-8 py-4 rounded-lg border border-slate-700 hover:border-blue-400 transition-colors overflow-hidden">
+                    <span class="relative z-10 text-slate-300 group-hover:text-white font-medium transition-colors">Get
+                        in Touch</span>
+                    <div
+                        class="absolute inset-0 bg-blue-500/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300">
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Devfolio Infinite Marquee -->
+        <div
+            class="w-screen relative left-1/2 -translate-x-1/2 py-8 my-10 bg-slate-900/40 border-y border-slate-800/50 backdrop-blur-sm overflow-hidden flex whitespace-nowrap gsap-reveal">
+            <div id="marquee-content"
+                class="flex gap-12 text-3xl font-bold text-slate-700/60 uppercase tracking-widest items-center">
+                <span>Software Engineering</span> <i class="fa-solid fa-asterisk text-sm text-blue-500/50"></i>
+                <span>Problem Solving</span> <i class="fa-solid fa-asterisk text-sm text-blue-500/50"></i>
+                <span>Software Architecture</span> <i class="fa-solid fa-asterisk text-sm text-blue-500/50"></i>
+                <span>Agile Development</span> <i class="fa-solid fa-asterisk text-sm text-blue-500/50"></i>
+                <span>Full Stack</span> <i class="fa-solid fa-asterisk text-sm text-blue-500/50"></i>
+                <span>AI / ML</span> <i class="fa-solid fa-asterisk text-sm text-blue-500/50"></i>
+                <!-- Duplicated for infinite scroll illusion -->
+                <span>Software Engineering</span> <i class="fa-solid fa-asterisk text-sm text-blue-500/50"></i>
+                <span>Problem Solving</span> <i class="fa-solid fa-asterisk text-sm text-blue-500/50"></i>
+                <span>Software Architecture</span> <i class="fa-solid fa-asterisk text-sm text-blue-500/50"></i>
+                <span>Agile Development</span> <i class="fa-solid fa-asterisk text-sm text-blue-500/50"></i>
+                <span>Full Stack</span> <i class="fa-solid fa-asterisk text-sm text-blue-500/50"></i>
+                <span>AI / ML</span>
+            </div>
+        </div>
+
+        <!-- Technical Arsenal Section -->
+        <section id="skills" class="py-24">
+            <h3 class="text-2xl font-bold text-slate-100 mb-12 flex items-center gap-3 gsap-reveal">
+                <span class="text-blue-400 font-mono text-xl">02.</span> Technical Arsenal
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Frontend -->
+                <div class="p-8 rounded-xl glass-card gsap-reveal">
+                    <i class="fa-solid fa-code text-blue-400 text-3xl mb-5"></i>
+                    <h4 class="text-slate-100 font-semibold text-lg mb-3">Frontend</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">React, Next.js 14, Tailwind CSS, HTML, CSS</p>
+                </div>
+                <!-- Backend -->
+                <div class="p-8 rounded-xl glass-card gsap-reveal">
+                    <i class="fa-solid fa-database text-teal-400 text-3xl mb-5"></i>
+                    <h4 class="text-slate-100 font-semibold text-lg mb-3">Backend & DB</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">Java, Spring Boot, .NET 8, Node.js, Express,
+                        PostgreSQL, MySQL, RabbitMQ</p>
+                </div>
+                <!-- AI / ML -->
+                <div class="p-8 rounded-xl glass-card gsap-reveal">
+                    <i class="fa-solid fa-microchip text-purple-400 text-3xl mb-5"></i>
+                    <h4 class="text-slate-100 font-semibold text-lg mb-3">AI & ML</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">Python, TensorFlow, RAG, LangChain, Gemini API</p>
+                </div>
+                <!-- DevOps -->
+                <div class="p-8 rounded-xl glass-card gsap-reveal">
+                    <i class="fa-solid fa-cloud text-orange-400 text-3xl mb-5"></i>
+                    <h4 class="text-slate-100 font-semibold text-lg mb-3">DevOps & Cloud</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">Docker, AWS, Jenkins, CI/CD, Git, GitHub Actions
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects Section -->
+        <section id="projects" class="py-24">
+            <h3 class="text-2xl font-bold text-slate-100 mb-12 flex items-center gap-3 gsap-reveal">
+                <span class="text-blue-400 font-mono text-xl">03.</span> Featured Projects
+            </h3>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                <!-- TalentIQ -->
+                <div class="flex flex-col p-8 rounded-xl glass-card gsap-reveal">
+                    <div class="flex justify-between items-start mb-6">
+                        <i
+                            class="fa-solid fa-robot text-4xl text-blue-400 transition-transform group-hover:scale-110"></i>
+                        <a href="https://github.com/TalentIq-team/talentIQ" target="_blank"
+                            class="text-slate-400 hover:text-blue-400 transition-colors text-xl">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                    </div>
+                    <h4
+                        class="text-xl font-bold text-slate-100 mb-4 hover:text-blue-400 transition-colors cursor-pointer">
+                        TalentIQ</h4>
+                    <p class="text-sm text-slate-400 mb-8 flex-grow leading-relaxed">
+                        AI-driven recruitment & talent management platform featuring a Career Coach, JD Bias Detector,
+                        and Blind Screening Mode. Built on a microservices architecture.
+                    </p>
+                    <div class="flex flex-wrap gap-2 text-xs font-mono text-blue-300">
+                        <span class="px-2 py-1 bg-blue-500/10 border border-blue-500/20 rounded">.NET 8</span>
+                        <span class="px-2 py-1 bg-blue-500/10 border border-blue-500/20 rounded">Next.js 14</span>
+                        <span class="px-2 py-1 bg-blue-500/10 border border-blue-500/20 rounded">RabbitMQ</span>
+                        <span class="px-2 py-1 bg-blue-500/10 border border-blue-500/20 rounded">Gemini API</span>
+                    </div>
+                </div>
+
+                <!-- Silverline -->
+                <div class="flex flex-col p-8 rounded-xl glass-card gsap-reveal">
+                    <div class="flex justify-between items-start mb-6">
+                        <i class="fa-solid fa-receipt text-4xl text-teal-400"></i>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/silverline-pos-system/react-fe" target="_blank"
+                                class="text-slate-400 hover:text-teal-400 transition-colors text-xl"><i
+                                    class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            <a href="https://github.com/silverline-pos-system/springboot-be" target="_blank"
+                                class="text-slate-400 hover:text-teal-400 transition-colors text-xl"><i
+                                    class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h4
+                        class="text-xl font-bold text-slate-100 mb-4 hover:text-teal-400 transition-colors cursor-pointer">
+                        Silverline</h4>
+                    <p class="text-sm text-slate-400 mb-8 flex-grow leading-relaxed">
+                        Enterprise ERP/POS system. Migrated legacy React architecture to Next.js 14 App Router, powered
+                        by a Spring Boot + JWT backend with 6-role RBAC.
+                    </p>
+                    <div class="flex flex-wrap gap-2 text-xs font-mono text-teal-300">
+                        <span class="px-2 py-1 bg-teal-500/10 border border-teal-500/20 rounded">Next.js 14</span>
+                        <span class="px-2 py-1 bg-teal-500/10 border border-teal-500/20 rounded">Spring Boot</span>
+                        <span class="px-2 py-1 bg-teal-500/10 border border-teal-500/20 rounded">Java</span>
+                    </div>
+                </div>
+
+                <!-- Arka -->
+                <div class="flex flex-col p-8 rounded-xl glass-card gsap-reveal">
+                    <div class="flex justify-between items-start mb-6">
+                        <i class="fa-solid fa-building-columns text-4xl text-blue-400"></i>
+                        <a href="https://github.com/keshan-dev/arka" target="_blank"
+                            class="text-slate-400 hover:text-blue-400 transition-colors text-xl">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                    </div>
+                    <h4
+                        class="text-xl font-bold text-slate-100 mb-4 hover:text-blue-400 transition-colors cursor-pointer">
+                        Arka</h4>
+                    <p class="text-sm text-slate-400 mb-8 flex-grow leading-relaxed">
+                        Cell-isolated digital banking platform developed for the Duothan 6.0 hackathon alongside Team
+                        True Node.
+                    </p>
+                    <div class="flex flex-wrap gap-2 text-xs font-mono text-blue-300">
+                        <span class="px-2 py-1 bg-blue-500/10 border border-blue-500/20 rounded">TypeScript</span>
+                        <span class="px-2 py-1 bg-blue-500/10 border border-blue-500/20 rounded">Hackathon</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/50 bg-[#0B1120] py-8 text-center gsap-reveal">
+        <p class="text-slate-400 text-sm font-mono mb-3">
+            Currently exploring RAG Architecture, MLOps, & Docker Internals.
+        </p>
+        <p class="text-slate-600 text-sm">
+            Designed & Built by Shamika Keshan &copy; 2026
+        </p>
+    </footer>
+
+    <!-- GSAP Script Interactions -->
+    <script>
+        // Register ScrollTrigger Plugin
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Ensure elements are visible to GSAP engine before animating
+        gsap.set(".hero-elem, .gsap-reveal", { autoAlpha: 1 });
+
+        // Hero Section Stagger Reveal
+        gsap.from(".hero-elem", {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.15,
+            ease: "power4.out",
+            delay: 0.2
+        });
+
+        // Infinite Scroll Marquee
+        gsap.to("#marquee-content", {
+            xPercent: -50,
+            ease: "none",
+            duration: 25,
+            repeat: -1
+        });
+
+        // Scroll Reveal Elements (Cards & Sections)
+        gsap.utils.toArray('.gsap-reveal').forEach(function (elem) {
+            gsap.from(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 60,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power3.out"
+            });
+        });
+    </script>
+</body>
+
+</html>
